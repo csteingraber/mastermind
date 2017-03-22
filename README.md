@@ -1,0 +1,2 @@
+# Mastermind
+This is another project from [The Odin Project's Cirriculum](http://www.theodinproject.com/courses/ruby-programming/lessons/oop) demonstrating experience with Object Oriented Programming in Ruby.
