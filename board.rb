@@ -25,7 +25,7 @@ class Board
 
   # Empties the board for a new round.
   def clear_board
-    @board = []
+    @board.clear
   end
 
   # Takes in an array named "pins" and appends its 
