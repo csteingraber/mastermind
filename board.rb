@@ -21,6 +21,7 @@ class Board
       puts "|  #{row[0]}  |#{row[1].center(line_width)}|  #{row[2]}  |  #{row[3]}  |"
     end
     puts " _________________________________________________________________________"
+    puts
   end
 
   # Empties the board for a new round.

@@ -1,5 +1,3 @@
-require "./board"
-
 # This class acts as the container for the code
 # to be guessed and provides the functionality
 # for giving the associated black and white pins
@@ -16,7 +14,7 @@ class Codemaker
   # turn and generates a 2-element array
   # of strings containing # of black
   # pins and # of white pins.
-  def give_feeback(guess)
+  def give_feedback(guess)
     code = Array.new(@code)
     positions = [] # Used to remember index of colors
                    # that are both correct and in the 
@@ -73,22 +71,3 @@ class Codemaker
     code = "red white blue green".split
   end
 end
-
-codemaker = Codemaker.new
-board = Board.new
-guess1 = "red blue green green".split
-guess2 = "red blue green white".split
-guess3 = "red blue white green".split
-guess4 = "red white blue green".split
-board.add(guess1)
-board.add(codemaker.give_feeback(guess1))
-board.print_board
-board.add(guess2)
-board.add(codemaker.give_feeback(guess2))
-board.print_board
-board.add(guess3)
-board.add(codemaker.give_feeback(guess3))
-board.print_board
-board.add(guess4)
-board.add(codemaker.give_feeback(guess4))
-board.print_board
