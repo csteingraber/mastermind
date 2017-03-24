@@ -7,6 +7,7 @@ class Codebreaker
   def guess
     accepted_colors = "red green blue orange yellow brown".split
     valid_input = false
+
     until valid_input
       puts "Color Choices: RED GREEN BLUE ORANGE YELLOW BROWN"
       puts
@@ -26,11 +27,14 @@ class Codebreaker
           end
           valid_input = true
         end
+
       else
         puts "Please put in only four colors."
         puts
       end
     end
+    p "This is what codebreaker.guess is returning: #{colors}"
+    puts
     colors
   end
 end

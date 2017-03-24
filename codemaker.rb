@@ -68,6 +68,6 @@ class Codemaker
       end
     end
 
-    code = "red white blue green".split
+    code
   end
 end

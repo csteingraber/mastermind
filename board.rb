@@ -37,7 +37,7 @@ class Board
     if pins.size == 4 # if pins are the color pins
       pins = pins.join(" ")
       row = @board.size
-      @board[row] = [(row + 1).to_s, pins, "black pins: ", "white pins: "] 
+      @board << [(row + 1).to_s, pins, "black pins: ", "white pins: "] 
     else
       row = @board.size - 1 # The last row with color pins on it
       @board[row][2] += pins[0]
