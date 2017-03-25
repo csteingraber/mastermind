@@ -1,7 +1,8 @@
 # This class contains the representation of the game board
 # and the functionality to print it to the terminal as well
-# as clear it for new rounds.
+# as add colored pins to it.
 class Board
+
   attr_reader :board
 
   # Initialize the board to be an empty 2D array.
@@ -24,11 +25,6 @@ class Board
     puts
   end
 
-  # Empties the board for a new round.
-  def clear_board
-    @board.clear
-  end
-
   # Takes in an array named "pins" and appends its 
   # contents to the board. "Pins" may either contain
   # the four guesses for the code or the black and white
@@ -36,12 +32,11 @@ class Board
   def add(pins)
     if pins.size == 4 # if pins are the color pins
       pins = pins.join(" ")
-      row = @board.size
-      @board << [(row + 1).to_s, pins, "black pins: ", "white pins: "] 
+      new_row = @board.size + 1
+      @board << [(new_row).to_s, pins, "black pins: ", "white pins: "] 
     else
-      row = @board.size - 1 # The last row with color pins on it
-      @board[row][2] += pins[0]
-      @board[row][3] += pins[1] 
+      @board[-1][2] += pins[0]
+      @board[-1][3] += pins[1] 
     end
   end
 end

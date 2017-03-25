@@ -1,12 +1,31 @@
+require "./player"
+
 # This class acts as the container for the code
 # to be guessed and provides the functionality
 # for giving the associated black and white pins
 # as feedback for every guess made.
-class Codemaker
+class Codemaker < Player
+
+  attr_reader :user
 
   # Initializes the Codemaker with a random code.
   def initialize
-    @code = generate_code
+    puts "Would you like to be the codemaker? (y/n)"
+    puts
+    response = gets.chomp.downcase
+    puts
+    if response == "y"
+      @user = "human"
+      @code = input
+    else
+      if response != "n"
+        puts "I'm not quite sure what you mean but I will just" \
+             " allow the computer to be the codemaker and choose."
+        puts
+      end
+      @user = "computer"
+      @code = generate_code
+    end
   end
 
   # Takes in an array containing the 
@@ -15,6 +34,7 @@ class Codemaker
   # of strings containing # of black
   # pins and # of white pins.
   def give_feedback(guess)
+    guess = guess.clone
     code = Array.new(@code)
     positions = [] # Used to remember index of colors
                    # that are both correct and in the 
@@ -48,26 +68,5 @@ class Codemaker
     end
 
     [black_pins.to_s, white_pins.to_s]
-  end
-
-  private
-
-  # Creates and returns an array of four random colors.
-  def generate_code
-    code = []
-
-    4.times do 
-      choice = rand(6) + 1 
-      case(choice)
-      when 1 then code << "red"
-      when 2 then code << "green"
-      when 3 then code << "blue"
-      when 4 then code << "orange"
-      when 5 then code << "yellow"
-      when 6 then code << "brown"
-      end
-    end
-
-    code
   end
 end

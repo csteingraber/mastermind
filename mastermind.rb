@@ -23,26 +23,31 @@ class Mastermind
   # or there are no more turns left.
   def start
     win = false
+    codemaker_user = @codemaker.user
     12.times do
-      guess = @codebreaker.guess
+      guess = codemaker_user == "computer" ?  @codebreaker.input : @codebreaker.computer_guess(@board.board[-1])
       feedback = @codemaker.give_feedback(guess)
       win = feedback[0] == "4" ? true : false
-      p "guess inside of Mastermind is: #{guess}"
-      puts
       @board.add(guess)
-      p "board looks like this after @board.add(guess): #{@board.board}"
-      puts
       @board.add(feedback)
-      p "board looks like this after @board.add(feedback): #{@board.board}"
-      puts
-      @board.print_board
+      @board.print_board if codemaker_user == "computer"
       break if win
     end
 
     if win
-      puts "You won!"
+      if codemaker_user == "computer"
+        puts "You won!"
+      else
+        puts "Computer won!"
+        @board.print_board
+      end
     else
-      puts "You lost!"
+      if codemaker_user == "computer"
+        puts "You lost!"
+      else
+        puts "Computer lost!"
+        @board.print_board
+      end
     end
   end
 end
