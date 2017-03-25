@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Codebreaker - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Player.html">Player</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-computer_guess">#computer_guess</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Codebreaker">
+  <h1 id="class-Codebreaker" class="class">
+    class Codebreaker
+  </h1>
+
+  <section class="description">
+    
+<p>This class provides the basic functionality  for making guesses toward the
+code.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Initializes instance variables that  are useful only when the computer is
+playing as codebreaker</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File codebreaker.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+  <span class="ruby-ivar">@previous_black_pins</span> = <span class="ruby-value">-1</span> <span class="ruby-comment"># -1 to distinguish between first round</span>
+                            <span class="ruby-comment"># of feedback and every other round.</span>
+  <span class="ruby-ivar">@previous_guesses</span> = []
+  <span class="ruby-ivar">@known_pins</span> = <span class="ruby-value">0</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-computer_guess" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">computer_guess</span><span
+            class="method-args">(row)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This method is used when the user of the  game chooses to be the codemaker
+instead. This method takes in an array of strings representing the last row
+of the game board and return a new guess array.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="computer_guess-source">
+            <pre><span class="ruby-comment"># File codebreaker.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">computer_guess</span>(<span class="ruby-identifier">row</span>)
+  <span class="ruby-identifier">code</span> = []
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-comment"># if first guess</span>
+    <span class="ruby-identifier">code</span> = <span class="ruby-identifier">generate_code</span>
+    <span class="ruby-ivar">@previous_guesses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">code</span>[<span class="ruby-value">0</span>]
+
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">current_black_pins</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">2</span>][<span class="ruby-value">-1</span>]
+    <span class="ruby-identifier">last_guess</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">split</span>
+
+    <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@previous_black_pins</span> <span class="ruby-operator">!=</span> <span class="ruby-value">-1</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">current_black_pins</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@previous_black_pins</span>)
+      <span class="ruby-ivar">@known_pins</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-ivar">@previous_black_pins</span> = <span class="ruby-identifier">current_black_pins</span> <span class="ruby-comment"># Update record of black pins for future turns</span>
+      <span class="ruby-ivar">@previous_guesses</span> = [<span class="ruby-identifier">last_guess</span>[<span class="ruby-ivar">@known_pins</span>]] <span class="ruby-comment"># Start off with next color to the right</span>
+                                                    <span class="ruby-comment"># and record it as your previous guess since</span>
+                                                    <span class="ruby-comment"># we are about to guess a new color in its</span>
+                                                    <span class="ruby-comment"># place.</span>
+
+    <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@previous_black_pins</span> <span class="ruby-operator">!=</span> <span class="ruby-value">-1</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">current_black_pins</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@previous_black_pins</span>)
+      <span class="ruby-identifier">last_guess</span>[<span class="ruby-ivar">@known_pins</span>] = <span class="ruby-ivar">@previous_guesses</span>[<span class="ruby-value">-2</span>] <span class="ruby-comment"># Since black pins went down after our last guess,</span>
+                                                      <span class="ruby-comment"># we should go back to our guess before the last one. </span>
+      <span class="ruby-ivar">@known_pins</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-ivar">@previous_guesses</span> = [<span class="ruby-identifier">last_guess</span>[<span class="ruby-ivar">@known_pins</span>]] <span class="ruby-comment"># Start off with next color to the right</span>
+                                                    <span class="ruby-comment"># and record it as your previous guess since</span>
+                                                    <span class="ruby-comment"># we are about to guess a new color in its</span>
+                                                    <span class="ruby-comment"># place.</span>
+
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@previous_black_pins</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1</span> <span class="ruby-comment"># If it&#39;s the first round.</span>
+       <span class="ruby-ivar">@previous_black_pins</span> = <span class="ruby-identifier">current_black_pins</span>  <span class="ruby-comment"># Update record of black pins for future turns.</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">guess</span> = (<span class="ruby-identifier">@@accepted_colors</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@previous_guesses</span>).<span class="ruby-identifier">sample</span>
+    <span class="ruby-ivar">@previous_guesses</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">guess</span>
+    <span class="ruby-identifier">last_guess</span>[<span class="ruby-ivar">@known_pins</span>] = <span class="ruby-identifier">guess</span> <span class="ruby-comment"># Keep everything the same as your last guess except for the </span>
+                                    <span class="ruby-comment"># current color that we&#39;re guessing.</span>
+    <span class="ruby-identifier">code</span> = <span class="ruby-identifier">last_guess</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">code</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
